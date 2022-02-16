@@ -9,16 +9,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan("dev"));
 
-// const UserRoute = require("./routes/user");
-// app.use("/", UserRoute);
-
-// mongoose.connect(
-//   process.env.DB_CONNECTION,
-//   { useNewUrlParser: true, useUnifiedTopology: true },
-//   () => {
-//     console.log("connected to DB");
-//   }
-// );
+mongoose.connect(
+  process.env.DB_CONNECTION,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  () => {
+    console.log("connected to DB");
+  }
+);
 
 app.use(taskRoute);
 
