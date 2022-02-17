@@ -33,3 +33,17 @@ exports.getSingleTask = async (req, res) => {
     res.status(500).json({ message: error });
   }
 };
+
+// Delete a task by id
+exports.deleteTask = async (req, res) => {
+  try {
+    const taskId = req.params.id;
+    const task = await Task.findOneAndDelete({ _id: taskId });
+    if (!task) {
+      return res.status(404).json({ message: `No task with id: ${taskId}` });
+    }
+    res.status(200).json({ message: `Task with id:${taskId} is deleted` });
+  } catch (error) {
+    res.status(500).json({ message: error });
+  }
+};
