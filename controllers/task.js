@@ -1,3 +1,4 @@
+const task = require("../models/task");
 const Task = require("../models/task");
 
 // Create a task
@@ -13,7 +14,7 @@ exports.createTask = async (req, res) => {
 // Get all tasks
 exports.getAllTasks = async (req, res) => {
   try {
-    const tasks = await Task.find({});
+    const tasks = await Task.find();
     res.status(200).json({ message: "tasks", tasks });
   } catch (error) {
     res.status(500).json({ message: error });
@@ -29,6 +30,23 @@ exports.getSingleTask = async (req, res) => {
       return res.status(404).json({ message: `No task with id: ${taskId}` });
     }
     res.status(200).json({ message: "task", task });
+  } catch (error) {
+    res.status(500).json({ message: error });
+  }
+};
+
+//Update a task
+exports.updateTask = async (req, res) => {
+  try {
+    const taskId = req.params.id;
+    const task = await Task.findOneAndUpdate({ _id: taskId }, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    if (!task) {
+      return res.status(404).json({ message: `No task with id: ${taskId}` });
+    }
+    res.status(200).json({ message: `Task with id:${taskId} is updated` });
   } catch (error) {
     res.status(500).json({ message: error });
   }
