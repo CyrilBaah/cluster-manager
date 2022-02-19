@@ -3,7 +3,6 @@ const app = express();
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 require("dotenv").config();
-const res = require("express/lib/response");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -18,11 +17,13 @@ mongoose.connect(
 );
 
 // Routes
-const taskRoute = require("./routes/task");
+const tasksRoute = require("./routes/tasks");
+const storesRoute = require("./routes/stores");
 const notFoundHandler = require("./middleware/notFound");
 const errorHandler = require("./middleware/errorHandler");
 
-app.use(taskRoute);
+app.use(tasksRoute);
+app.use(storesRoute);
 app.use(notFoundHandler);
 app.use(errorHandler);
 
