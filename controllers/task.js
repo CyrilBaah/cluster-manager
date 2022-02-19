@@ -46,7 +46,7 @@ exports.updateTask = async (req, res) => {
     if (!task) {
       return res.status(404).json({ message: `No task with id: ${taskId}` });
     }
-    res.status(200).json({ message: `Task with id:${taskId} is updated` });
+    res.status(200).json({ message: `Task with id:${taskId} is updated`, task });
   } catch (error) {
     res.status(500).json({ message: error });
   }
