@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const taskRoute = require("./routes/task");
+const res = require("express/lib/response");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -18,6 +19,10 @@ mongoose.connect(
 );
 
 app.use(taskRoute);
+
+app.get('/', (req, res) => {
+  res.json({message: "Cluster API is online"})
+})
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, async () => {
