@@ -18,12 +18,12 @@ mongoose.connect(
 
 // Routes
 const tasksRoute = require("./routes/tasks");
-const storesRoute = require("./routes/stores");
+const productsRoute = require("./routes/products");
 const notFoundHandler = require("./middleware/notFound");
 const errorHandler = require("./middleware/errorHandler");
 
 app.use(tasksRoute);
-app.use(storesRoute);
+app.use(productsRoute);
 app.use(notFoundHandler);
 app.use(errorHandler);
 
