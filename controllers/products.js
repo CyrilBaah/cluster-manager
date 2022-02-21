@@ -23,12 +23,21 @@ exports.getAllProducts = async (req, res) => {
 // Get product by search [name, featured, company]
 exports.searchProduct = async (req, res) => {
   try {
-    const { featured } = req.query;
+    const { featured, name, company } = req.query;
     const queryObject = {};
 
     if(featured) {
       queryObject.featured = featured === 'true' ? true : false;
     }
+
+    if(name) {
+      queryObject.name = name;
+    }
+
+    if(company) {
+      queryObject.company = company
+    }
+
     const products = await Product.find(queryObject);
     res.status(200).json({ products, nbHits : products.length });
   } catch (error) {
