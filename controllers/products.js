@@ -23,7 +23,7 @@ exports.getAllProducts = async (req, res) => {
 // Get product by search [name, featured, company]
 exports.searchProduct = async (req, res) => {
   try {
-    const { featured, name, company, sort } = req.query;
+    const { featured, name, company, sort, fields } = req.query;
     const queryObject = {};
 
     if (featured) {
@@ -45,8 +45,15 @@ exports.searchProduct = async (req, res) => {
     } else {
       result = result.sort("createdAt");
     }
+
+    if (fields) {
+      const fieldsList = fields.split(",").join(" ");
+      result = result.select(fieldsList);
+    }
+
     const products = await result;
     res.status(200).json({ products, nbHits: products.length });
+    
   } catch (error) {
     res.status(500).json({ message: error });
   }
