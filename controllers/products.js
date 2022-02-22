@@ -23,23 +23,30 @@ exports.getAllProducts = async (req, res) => {
 // Get product by search [name, featured, company]
 exports.searchProduct = async (req, res) => {
   try {
-    const { featured, name, company } = req.query;
+    const { featured, name, company, sort } = req.query;
     const queryObject = {};
 
-    if(featured) {
-      queryObject.featured = featured === 'true' ? true : false;
+    if (featured) {
+      queryObject.featured = featured === "true" ? true : false;
     }
 
-    if(name) {
-      queryObject.name = { $regex: name, $options: 'i' };
+    if (name) {
+      queryObject.name = { $regex: name, $options: "i" };
     }
 
-    if(company) {
-      queryObject.company = company
+    if (company) {
+      queryObject.company = company;
     }
 
-    const products = await Product.find(queryObject);
-    res.status(200).json({ products, nbHits : products.length });
+    let result = Product.find(queryObject);
+    if (sort) {
+      const sortList = sort.split(",").join(" ");
+      result = result.sort(sortList);
+    } else {
+      result = result.sort("createdAt");
+    }
+    const products = await result;
+    res.status(200).json({ products, nbHits: products.length });
   } catch (error) {
     res.status(500).json({ message: error });
   }
