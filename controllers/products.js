@@ -51,9 +51,16 @@ exports.searchProduct = async (req, res) => {
       result = result.select(fieldsList);
     }
 
+    // Paginate
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
+
+    result = result.skip(skip).limit(limit);
+
     const products = await result;
     res.status(200).json({ products, nbHits: products.length });
-    
+
   } catch (error) {
     res.status(500).json({ message: error });
   }
