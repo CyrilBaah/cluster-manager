@@ -1,3 +1,4 @@
+const match = require("nodemon/lib/monitor/match");
 const Product = require("../models/product");
 
 // Create a product
@@ -14,7 +15,9 @@ exports.createProduct = async (req, res) => {
 exports.getAllProducts = async (req, res) => {
   try {
     const products = await Product.find();
-    res.status(200).json({ message: "List of products", products, nbHits: products.length });
+    res
+      .status(200)
+      .json({ message: "List of products", products, nbHits: products.length });
   } catch (error) {
     res.status(500).json({ message: error });
   }
@@ -23,7 +26,7 @@ exports.getAllProducts = async (req, res) => {
 // Get product by search [name, featured, company]
 exports.searchProduct = async (req, res) => {
   try {
-    const { featured, name, company, sort, fields } = req.query;
+    const { featured, name, company, sort, fields, numericFilters } = req.query;
     const queryObject = {};
 
     if (featured) {
@@ -36,6 +39,30 @@ exports.searchProduct = async (req, res) => {
 
     if (company) {
       queryObject.company = company;
+    }
+
+    // numericFilters
+    if (numericFilters) {
+      const operatorMap = {
+        ">": "$gt",
+        ">=": "$gte",
+        "=": "$eq",
+        "<": "$lt",
+        "<=": "$lte",
+      };
+
+      const regEx = /\b(<|>|>=|=|<|<=)\b/g;
+      let filters = numericFilters.replace(
+        regEx,
+        (match) => `-${operatorMap[match]}-`
+      );
+      const options = ["price", "rating"];
+      filters = filters.split(",").forEach((item) => {
+        const [field, operator, value] = item.split("-");
+        if (options.includes(field)) {
+          queryObject[field] = { [operator]: Number(value) };
+        }
+      });
     }
 
     let result = Product.find(queryObject);
@@ -60,7 +87,6 @@ exports.searchProduct = async (req, res) => {
 
     const products = await result;
     res.status(200).json({ products, nbHits: products.length });
-
   } catch (error) {
     res.status(500).json({ message: error });
   }
