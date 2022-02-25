@@ -1,0 +1,14 @@
+[
+    {
+        "name": "call a friend",
+        "completed": "false"
+    },
+    {
+        "name": "walk around the block",
+        "completed": "true"
+    },
+    {
+        "name": "eat an apple a day",
+        "completed": "false"
+    }
+]
