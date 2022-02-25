@@ -5,7 +5,7 @@ const schema = new mongoose.Schema({
     type: String,
     required: [true, "name required"],
     trim: true,
-    maxlength: [20, "name cannot exceed 20 characters"]
+    maxlength: [50, "name cannot exceed 20 characters"]
   },
   completed: {
     type: Boolean,

@@ -1,5 +1,22 @@
-// require('dotenv').config()
+require('dotenv').config()
 
-// const connectDB = require('./')
+const Task = require('../models/task')
+const connectDB = require('../config/db')
+const taskSeeder = require('../dataset/task.json')
 
-// 3:43
+const seedDB = async() => {
+    try {
+        // await connectDB();
+
+        await Task.deleteMany();
+        await Task.create(taskSeeder)
+        console.log("Seeding successfull!!!");
+        process.exit(1)
+
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+seedDB()
