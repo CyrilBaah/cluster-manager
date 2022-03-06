@@ -1,0 +1,243 @@
+{
+	"info": {
+		"_postman_id": "829edf03-dc7e-4190-9596-2287942ffaac",
+		"name": "Cluster manager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "tasks",
+			"item": [
+				{
+					"name": "Create  a task",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"created item 3\",\n    \"completed\": \"true\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/tasks",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all tasks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/tasks",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a single task",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/tasks/620d2522d19714439b34ff04",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"tasks",
+								"620d2522d19714439b34ff04"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Task",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"created item 1\",\n    \"completed\": \"false\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/tasks/62115fa1fed4649435cbe56d",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"tasks",
+								"62115fa1fed4649435cbe56d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete task by Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/tasks/62100479d102f35085b356f",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"tasks",
+								"62100479d102f35085b356f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "Get all products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/products",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"leather sofa\",\n    \"price\": 99,\n    \"featured\": false,\n    \"rating\": 4.9,\n    \"company\": \"caressa\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/products",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get products by search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/products?name=m&sort=name&fields=company,price&limit=20&page=1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "featured",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "company",
+									"value": "libby",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "m"
+								},
+								{
+									"key": "sort",
+									"value": "name"
+								},
+								{
+									"key": "fields",
+									"value": "company,price"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "numericFilters",
+									"value": "price>300,rating>=4",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
