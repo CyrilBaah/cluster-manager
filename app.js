@@ -9,6 +9,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan("dev"));
 
+const YAML = require('yamljs');
+const swaggerJsDocs = YAML.load('./api-docs/api.yaml');
+const swaggerUI = require('swagger-ui-express');
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerJsDocs));
 
 
 // Routes

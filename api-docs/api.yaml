@@ -1,0 +1,10 @@
+swagger: "2.0"
+
+info:
+  title: Cluster API
+  version: 1.0
+
+schemes: ["http", "https"]
+
+paths:
+  
