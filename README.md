@@ -24,6 +24,9 @@ $ node seeders/product.js
 $ node seeders/task.js
 ```
 
+# Interact with all API endpoints locally
+[API Docs](http://localhost:3000/api-docs)
+
 # How to interact with APIs Endpoints locally using Postman
 ### Task
 `Prefix: http://localhost:3000/api/v1` against endpoint. Example: `http://localhost:3000/api/v1/tasks`
