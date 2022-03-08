@@ -45,4 +45,5 @@ $ node seeders/task.js
 * **POST** `/api/v1/products` Create a new product
 * **GET** `/api/v1/products` Get products by search
 
-# Locate *Cluster manager.postman_colltectio.json* for reference
+
+# Locate *Cluster manager.postman_collection.json* for reference to use postman collection
