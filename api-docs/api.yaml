@@ -25,3 +25,15 @@ paths:
           description: Bad request
         401:
           description: User doesn't exist
+
+  # Get all task
+    get:
+      summary: Get all task
+      description: Returns all task
+      responses:
+        200:
+          description: Successful operation
+        400:
+          description: Bad request
+        401:
+          description: Post doesn't exist
