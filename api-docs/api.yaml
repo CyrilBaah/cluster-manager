@@ -7,4 +7,21 @@ info:
 schemes: ["http", "https"]
 
 paths:
-  
+  # Create a task
+  /api/v1/tasks:
+    post:
+      summary: Create a task
+      description: Add a new task
+      parameters:
+        - name: name
+          in: formData
+          required: true
+        - name: completed
+          in: formData
+      responses:
+        201:
+          description: Created successfully
+        400:
+          description: Bad request
+        401:
+          description: User doesn't exist
