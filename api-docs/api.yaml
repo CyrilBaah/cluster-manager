@@ -54,3 +54,41 @@ paths:
           description: Bad request
         500:
           description: Internal server error
+
+    put:
+      summary: Update a single task
+      description: Update a task by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+        - name: task
+          in: body
+          required: true
+          schema:
+            $ref: '#/components/schemas/Task'
+      responses:
+        200:
+          description: Successful operation
+        400:
+          description: Bad request
+        500:
+          description: Internal server error
+
+
+
+components:
+  schemas:
+    # Task schema
+    Task:
+      type: object
+      example:
+        {
+          "name": "task name",
+          "completed": "false",
+        }
+      properties:
+        name:
+          type: string
+        completed:
+          type: boolean
