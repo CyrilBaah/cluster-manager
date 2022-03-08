@@ -37,3 +37,20 @@ paths:
           description: Bad request
         401:
           description: Post doesn't exist
+
+  # Get a task by id
+  /api/v1/tasks/{id}:
+    get:
+      summary: Get a single task
+      description: Get a task by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+      responses:
+        200:
+          description: Successful operation
+        400:
+          description: Bad request
+        500:
+          description: Internal server error
