@@ -75,6 +75,23 @@ paths:
         500:
           description: Internal server error
 
+    delete:
+      summary: Delete a task by id
+      description: Delete a task
+      parameters:
+        - name: id
+          in: path
+          required: true
+      responses:
+        200:
+          description: Successful operation
+        204:
+          description: Everything is good, nothing to return
+        400:
+          description: Bad request
+        401:
+          description: Post doesn't exist
+
 
 
 components:
